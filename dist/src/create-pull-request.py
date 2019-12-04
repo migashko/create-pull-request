@@ -348,4 +348,4 @@ if repo.is_dirty() or len(repo.untracked_files) > 0:
     process_event(github_token, github_repository, repo, branch, base)
 else:
     print("No modified or untracked files detected. Skipping.")
-    print("Hello from Vladimir")
+    print("Hello from Vladimir 2")
