@@ -19,9 +19,10 @@ try {
   //const octokit = new Octokit();
   const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
 
+  console.log(`[owner, repo]=[${owner}, ${repo}]`)
   // See https://developer.github.com/v3/issues/#create-an-issue
   //const { data } = await octokit.request("POST /repos/:owner/:repo/issues", {
-  const { data } = octokit.request("POST /repos/:owner/:repo/issues", {
+  const { data } = octokit.request("GET /repos/:owner/:repo/pulls", {
     owner,
     repo,
     title: "My test issue"
