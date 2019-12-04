@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const octokit = require('@actions/octokit');
 
 try {
   // `who-to-greet` input defined in action metadata file
@@ -13,6 +14,18 @@ try {
   const payload2 = JSON.stringify(github, undefined, 2)
   console.log(`The event payload: ${payload2}`);
   console.log(`GITHUB_TOKEN: ${process.env.GITHUB_TOKEN}`);
+  
+  
+  const octokit = new Octokit();
+  const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
+
+  // See https://developer.github.com/v3/issues/#create-an-issue
+  const { data } = await octokit.request("POST /repos/:owner/:repo/issues", {
+    owner,
+    repo,
+    title: "My test issue"
+  });
+  console.log("Issue created: %d", data.html_url);
 } 
 catch (error) 
 {
